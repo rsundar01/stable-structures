@@ -28,12 +28,12 @@ doc = false
 
 [[bin]]
 name = "btree_fuzz_bounded"
-path = "fuzz_targets/btree_fuzz_bounded.rs"
+path = "fuzz_targets/btree_map_fuzz_bounded.rs"
 test = false
 doc = false
 
 [[bin]]
 name = "btree_fuzz_unbounded"
-path = "fuzz_targets/btree_fuzz_unbounded.rs"
+path = "fuzz_targets/btree_map_fuzz_unbounded.rs"
 test = false
 doc = false

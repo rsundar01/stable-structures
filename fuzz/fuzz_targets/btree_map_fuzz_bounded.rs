@@ -9,16 +9,17 @@ use ic_stable_structures::{
 };
 
 const FUZZ_MEMORY_ID: MemoryId = MemoryId::new(0);
-const MAX_KEY_SIZE: usize = 8;
-const MAX_VALUE_SIZE: usize = 24;
+const KEY_SIZE: usize = 8;
+const VALUE_SIZE: usize = 24;
 
 thread_local! {
     static MEMORY_MANAGER: RefCell<MemoryManager<DefaultMemoryImpl>> = RefCell::new(
         MemoryManager::init(DefaultMemoryImpl::default())
     );
 
-    pub static FUZZ_STRUCT_STABLE_BTREE: RefCell<StableBTreeMap<Blob<MAX_KEY_SIZE>, Blob<MAX_VALUE_SIZE>, VirtualMemory<DefaultMemoryImpl>>> =
+    pub static FUZZ_STRUCT_STABLE_BTREE: RefCell<StableBTreeMap<[u8; KEY_SIZE], [u8; VALUE_SIZE], VirtualMemory<DefaultMemoryImpl>>> =
         MEMORY_MANAGER.with(|memory_manager| RefCell::new(StableBTreeMap::init(memory_manager.borrow().get(FUZZ_MEMORY_ID))));
+
 
 }
 
